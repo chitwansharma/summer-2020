@@ -1,0 +1,49 @@
+# summer-2020
+Task-1
+Answer:
+#Bash script
+count=1
+while [ $count -le 100 ]
+do
+  if [ $count -lt 26 ]
+  then
+    sudo docker container run -d --restart unless-stopped --name adhocnw$count alpine 
+  elif [[ ($count -ge 26) && ($count -le 50) ]]
+  then
+    sudo docker container run -d --restart unless-stopped --name adhocnw$count fedora 
+  elif [[ ($count -ge 51) && ($count -le 75) ]]
+  then
+    sudo docker container run -d --restart unless-stopped --name adhocnw$count centos 
+  else [[ ($count -ge 76) && ($count -le 100) ]]
+    sudo docker container run -d --restart unless-stopped --name adhocnw$count java 
+  fi
+  ((count++))
+done
+
+Task -2 
+Answer:
+Write a combination of Docker and OS commands to get list of Name,Created of all containers and store them in a list
+```
+sudo docker ps -a | awk 'print{ $14, $5$6$7$8 }' > file
+```
+
+
+# TASK 3
+Answer
+Run a container from local system using custom build Docker Image with parent process as firefox
+```
+do not have docker installed locally
+```
+
+# TASK 4
+Answer
+get RAM & CPU consumption from 100 containers and store in text file
+```
+#!/bin/bash
+count=1
+while [ $count -le 100 ]
+do
+    sudo docker container vmstat adhocnw$count >> cpu
+    ((count++))
+done
+```
